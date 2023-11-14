@@ -1,0 +1,83 @@
+.registrationPage{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 30px;
+    background-color: #4b4476;
+}
+#left{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: baseline;
+    padding-left: 80px;
+    border: 2px solid #0f0128;
+    border-right: none;
+    width: 40%;
+    height: 500px;
+}
+.regOpening{
+    margin: 20px;
+    margin-top: 0;
+    border-bottom: 1px solid #0f0128;
+}
+.regOpening h1{
+    margin: 0;
+    font-size: 36px;
+    font-weight: normal;
+}
+.regOpening h3{
+    font-size: 25px;
+    font-weight: lighter;
+    padding-bottom: 10px;
+}
+
+.registrationInput label{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.25rem;
+    font-weight: lighter;
+    font-size: 1.15rem;
+}
+
+.registrationInput input {
+    padding: 0.5rem;
+    border: none;
+    background-color: transparent;
+    color: #cacaca;
+    border: 1.5px solid #0f0128;
+    outline: none;
+    border-radius: 6px;
+}
+.registrationInput input:hover{
+    box-shadow: 0 4px 8px 0 #0f0128;
+    transition: 0.2s;
+}
+::placeholder {
+    color: #cacaca;
+    opacity: 0.6;
+}
+.regButton button {
+    margin-top: 20px;
+    padding: 0.8rem;
+    background-color: #0f0128;
+    color: #cacaca;
+    border: none;
+    border-radius: 6px;
+    outline: none;
+    cursor: pointer;
+}
+.regButton button:hover{
+    box-shadow: 0 4px 8px 0 #cacaca;
+    transition: 0.2s;
+}
+#right{
+    width: 60%;
+    height: 500px;
+    border: 2px solid #0f0128;
+    border-left: none;
+}
+#right img{
+    width:  -webkit-fill-available;
+    height: 500px;
+}
