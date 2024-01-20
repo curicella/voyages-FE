@@ -21,20 +21,7 @@ body {
   align-items: center;
   margin-bottom: 40px;
 }
-h2 {
-    font-size: 120px;
-    color: #BDB0BD;
-    border-bottom: #0f0128 solid;
-}
 
-h1{
-  margin-top: 10px;
-}
-
-p{
-  margin-top: 20px;
-  font-size: 18px;
-}
 .aboutCards{
   display: flex;
   flex-direction: row;

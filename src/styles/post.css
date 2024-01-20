@@ -1,0 +1,82 @@
+.postFrame{
+    display: flex;
+    justify-content: center;
+    border: #060a1a4b 1px solid;
+    margin: 30px 100px 30px;
+}
+.postFrame :hover {
+    background-color: #060a1a4b;
+    transition: ease 0.3s;
+}
+.postContent :hover{
+    background-color: transparent;
+}
+.postImg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+.postImg img {
+    width: -webkit-fill-available;
+}
+.postContent {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    padding: 10px 20px 0;
+    position: relative;
+}
+.postContent h3 {
+    font-size: 40px;
+    font-weight: 400;
+    border-bottom: 1px solid #060a1a4b;
+    text-align: center;
+}
+.postContent p {
+    padding: 20px;
+    font-size: 17px;
+}
+.desc{
+    height: 240px;
+}
+.our{
+    border-top: #060a1a4b 1px solid;
+    padding: 10px 20px 0;
+}
+.our h4 {
+    font-weight: 300;
+}
+.interaction{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 90px;
+}
+.rating{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.displayRating {
+    position: absolute;
+    margin-top: 60px;
+}
+
+.like{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.like span{
+    position: absolute;
+    margin-top: 60px;
+}
+.signature p{
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 0 10px;
+    font-size: 17px;
+}

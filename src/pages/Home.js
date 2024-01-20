@@ -1,46 +1,33 @@
-import React, {useContext, useState} from "react";
+import React from "react";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import HomeCard from "../components/home/HomeCard";
-import { MyContext } from "../context/my-context";
+import "../styles/home.css"
 
-const Home = () => {
-  const [myTodos, setMyTodos] = useState([
-    { id: 1, content: "Ela Programer" },
-    { id: 2, content: "1111111" },
-    { id: 3, content: "2222222" },
-    { id: 4, content: "3333333" },
-    { id: 5, content: "4444444" },
-    { id: 6, content: "5555555" },
-  ])
-  const [myInput, setMyInput] = useState('')
-  const programiranje = useContext(MyContext)
-
-
-  const myChildToParentFunction = (name, lastName, age) => {
-    console.log(name, lastName, age);
-  };
-
-
-  console.log("Moje ime je", programiranje.firstName)
-  
+const Home = () => {  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="content">
       <div className="content-header">
         <div className="content-header-div content-header-div-one">
-          <h1>MY TODO APP</h1>
-        </div>
-        <div className="content-header-div  content-header-div-two">
-          <input onChange={(e) => setMyInput(e.target.value)} value={myInput} />
-          <button onClick={() => programiranje.changeFirstName(myInput)}>Submit</button>
+          <div class="image-container">
+            <img className="landing" src="./heading.jpeg" alt="Landing"/>
+            <div className="overlay"></div>
+          </div>
         </div>
       </div>
-
-      {myTodos.map((myTodo) => (
-        <HomeCard
-          key={myTodo.id}
-          content={myTodo.content}
-          customFunction={myChildToParentFunction}
-        />
-      ))}
+      <HomeCard/>
+      <div className="content-header-div content-header-div-three">
+        <h1>Join our app for an endless library of inspiration</h1>
+        <p>Embark on a journey of discovery with our app and unlock a treasure trove of inspiration. 
+          Join us today to turn your wanderlust into reality and be part of a global network of adventurers. 
+          Your next unforgettable adventure is just a click away.</p>
+        <Link to="/registration" className="btn-flip" data-back="today" data-front="Register"></Link>
+        <Link to="/feed" className="btn-flip" data-back="feed" data-front="go to"></Link>
+      </div>
+      <Link to="/feed"></Link>
     </div>
   );
 };
