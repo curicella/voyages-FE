@@ -1,0 +1,22 @@
+.header {
+    padding-bottom: 20px;
+}
+.profileHeader {
+    width: -webkit-fill-available;
+    height: 60px;
+    background-color: #343b4985;
+    display: flex;
+    justify-content: space-evenly;
+}
+.showDiaries {
+    width: 50%;
+    display: grid;
+    place-content: center;
+}
+.profileHeader :hover {
+    background-color: #252b35af;
+    transition: ease 0.3s;
+}
+.showDiaries a {
+    font-size: 25px;
+}

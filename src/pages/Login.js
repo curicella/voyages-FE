@@ -1,8 +1,9 @@
 import React, { useContext, useState } from "react";
 import "../styles/auth.css";
 import axios from "axios";
-import { MyContext } from "../context/my-context";
+import { MyContext } from "../context/myContext";
 import { useNavigate } from "react-router-dom";
+import ScrollToTop from "../components/shared/ScrollToTop";
 
 const Login = () => {
   const [userName, setUserName] = useState("");
@@ -19,7 +20,7 @@ const Login = () => {
       setLoading(true);
 
       const response = await axios.post(
-        "https://localhost:7137/api/Users/login",
+        "https://localhost:7030/api/Users/login",
         {
           userName: userName,
           password: password,
@@ -37,7 +38,7 @@ const Login = () => {
       localStorage.setItem("user", JSON.stringify(responseData));
       setUserName("");
       setPassword("");
-      navigate("/home");
+      navigate("/feed");
     } catch (e) {
       console.log("Error", e);
       setError("Something went wrong");
@@ -47,6 +48,8 @@ const Login = () => {
   };
 
   return (
+    <>
+    <ScrollToTop/>
     <div className="authPage">
       <div className="authDiv" id="regLeft">
       <div className="cover">
@@ -63,16 +66,17 @@ const Login = () => {
         <form>
           <div className="authInput">
             <label>Username</label>
-            <input
+            <input 
               type="text"
+              placeholder="Username"
               onChange={(e) => setUserName(e.target.value)}
-              value={userName}
-            />
+              value={userName}/>
           </div>
           <div className="authInput">
             <label>Password</label>
             <input
               type="password"
+              placeholder="Password..."
               onChange={(e) => setPassword(e.target.value)}
               value={password}
             />
@@ -81,15 +85,13 @@ const Login = () => {
             <p style={{ color: "red", marginBottom: "1rem" }}>{error}</p>
           )}
           <div className="authButton">
-            <button onClick={loginUserHandler}>Login</button>
+          <button onClick={loginUserHandler}>Login</button>
           </div>
         </form>
-        <div className="googleLog">
-
-        </div>
       </div>
-      )}
+    )}
     </div>
+    </>
   );
 };
 

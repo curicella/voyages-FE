@@ -22,37 +22,6 @@ a {
   font-family: system-ui;
   font-weight: 300;
 }
-.navigation {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  background-color: transparent;
-  width: -webkit-fill-available;
-  padding: 7px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  background: #060a1a;
-  background: linear-gradient(180deg, #060a1ac3 0%, #272b3baf 30%, #505e6900 100%);
-}
-
-.logo{
-  scale: 1;
-  width: 60px;
-  padding: 5px;
-}
-
-.navigation-link {
-  font-size: 14px;
-}
-.navigation-link :hover{
-  border-bottom: #060a1a4d 3px solid;
-  transition: ease 0.3s;
-}
-
- /* Home.css */
-
 
 /* feed and posts */
 

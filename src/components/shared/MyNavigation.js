@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
-import { NavLink } from "react-router-dom";
-import { MyContext } from "../../context/my-context";
+import { NavLink, useNavigate } from "react-router-dom";
+import { MyContext } from "../../context/myContext";
+import "C:/Users/ICSISTEM/Desktop/VoyagesFE/voyagesFE/src/styles/nav.css"
 import axios from "axios";
 
 const MyNavigation = () =>
  {
   const { user, setUserFunction } = useContext(MyContext);
-
+  const navigate = useNavigate();
   const logoutUserHandler = () =>
    {
     setUserFunction(null);
@@ -14,6 +15,7 @@ const MyNavigation = () =>
     axios.defaults.headers.common[
       "Authorization"
     ] = '';
+    navigate("/home");
   };
 
 
@@ -51,15 +53,30 @@ const MyNavigation = () =>
       <>
         {user && (
           <div className="navigation">
-            <div className="navigation-link">
-              <NavLink to="/feed"><img className="logo" src="./logo.png" alt="logo"/></NavLink>
+            <div className="leftSide">
+              <div className="navigation-link">
+                <NavLink to="/feed"><img className="logo" src="./logo.png" alt="logo"/></NavLink>
+              </div>
+              <button className="createNew button">Create new Diary</button>
             </div>
-            <div className="navigation-link">
-              <NavLink to="/search">Search</NavLink>
+
+            <div className="rightSide">
+              <div className="basicLinks">
+              <div className="navigation-link">
+                  <NavLink to="/feed">Feed</NavLink>
+                </div>
+                <div className="navigation-link">
+                  <NavLink to="/search">Search</NavLink>
+                </div>
+                <div className="navigation-link">
+                  <NavLink to="/profile">Profile</NavLink>
+                </div>
+              </div>
+              <div className="navigation-link">
+                <NavLink onClick={logoutUserHandler} to={"/home"}>Log Out</NavLink>
+              </div>
             </div>
-            <div className="navigation-link">
-              <button onClick={logoutUserHandler}>Log Out</button>
-            </div>
+            
           </div>
         )}    
       </>

@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import "C:/Users/ICSISTEM/Desktop/ReactApp/voyagesFE/src/styles/post.css"
+import "C:/Users/ICSISTEM/Desktop/VoyagesFE/voyagesFE/src/styles/post.css"
 import StarRating from "./StarRating";
 import Heart from "react-animated-heart";
 
@@ -51,6 +51,10 @@ const PostInFeed = ({ initialImg, initialTitle, initialDesc, initialOR, initialU
                         if (isClick) 
                             setLikes(likes-1);
                         }} />
+                        {/* isClick={isClick} 
+                            onClick={() => { 
+                            setClick(!isClick); 
+                            setLikes(prevLikes => (isClick ? prevLikes - 1 : prevLikes + 1)); */}
                     <span>{likes}</span>
                 </div> 
             </div>

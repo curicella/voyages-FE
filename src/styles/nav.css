@@ -1,0 +1,68 @@
+a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 16px;
+  font-family: system-ui;
+  font-weight: 300;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: transparent;
+  width: -webkit-fill-available;
+  padding: 7px 70px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background: #060a1a;
+  background: linear-gradient(180deg, #060a1ac3 0%, #272b3baf 30%, #505e6900 100%);
+}
+
+.logo{
+  scale: 1;
+  width: 60px;
+  padding-top: 5px;
+}
+.navigation-link a :hover{
+    border-bottom: none;
+}
+
+.navigation-link a {
+  font-size: 18px;
+}
+.navigation-link :hover{
+  border-bottom: #060a1a4d 3px solid;
+  transition: ease 0.3s;
+}
+.leftSide {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 320px;
+}
+.rightSide {
+  display: flex;
+  justify-content: space-between;
+  width: 420px;
+}
+.basicLinks {
+  display: flex;
+  justify-content: space-around;
+  width: 300px;
+}
+
+.button {
+  background-color: #000000;
+  border-radius: 50px;
+  width: 200px;
+  padding: 10px;
+  font-size: 15px;
+  color: #dddddd;
+  transition: transform 0.3s ease;
+}
+.button:hover {
+    transform: scale(1.05); /* Scale the button by 10% on hover */
+  }

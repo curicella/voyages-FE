@@ -2,13 +2,14 @@ import React, { useContext, useState } from "react";
 import "../styles/auth.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { MyContext } from "../context/my-context";
+import { MyContext } from "../context/myContext";
+import ScrollToTop from "../components/shared/ScrollToTop";
 
 const Registration = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [mail, setMail] = useState("");
-  const [age, setAge] = useState(0);
+  const [email, setEmail] = useState("");
+  const [age, setAge] = useState(null);
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
@@ -19,59 +20,17 @@ const Registration = () => {
 
   const [firstNameMessage, setFirstNameMessage] = useState(null);
   const [lastNameMessage, setLastNameMessage] = useState(null);
-  const [mailMessage, setMailMessage] = useState(null);
+  const [emailMessage, setEmailMessage] = useState(null);
   const [ageMessage, setAgeMessage] = useState(null);
   const [userNameMessage, setUserNameMessage] = useState(null);
   const [passwordMessage, setPasswordMessage] = useState(null);
-
-  const registerUserHandler = async () => {
-    setError(null);
-
-    try {
-      setLoading(true);
-
-      const response = await axios.post(
-        "https://localhost:7137/api/Users/register",
-        {
-          firstName,
-          lastName,
-          mail,
-          age,
-          userName,
-          password,
-        }
-      );
-
-      const responseData = response.data;
-
-      axios.defaults.headers.common[
-        "Authorization"
-      ] = `Bearer ${responseData.token}`;
-
-      setUserFunction(responseData);
-      
-      setFirstName("");
-      setLastName("");
-      setMail("");
-      setAge(0);
-      setUserName("");
-      setPassword("");
-      localStorage.setItem("user", JSON.stringify(responseData));
-      navigate("/home");
-    } catch (e) {
-      console.log("Error", e);
-      setError("Something went wrong");
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
 
     setFirstNameMessage(null);
     setLastNameMessage(null);
-    setMailMessage(null);
+    setEmailMessage(null);
     setAgeMessage(null);
     setUserNameMessage(null);
     setPasswordMessage(null);
@@ -86,8 +45,8 @@ const Registration = () => {
       return;
     }
 
-    if (mail.trim().length === 0) {
-      setMailMessage("Please enter valid mail!");
+    if (email.trim().length === 0) {
+      setEmailMessage("Please enter valid email!");
       return;
     }
 
@@ -107,108 +66,138 @@ const Registration = () => {
     }
 
     try {
-      const response = await axios.get('https://jsonplaceholder.typicode.com/todos/2')
-      console.log(response.data)
-    } catch(e) {
-      console.log("ERROR", e)
+      const response = await axios.post(
+        "https://localhost:7030/api/Users/register",
+        {
+          firstName,
+          lastName,
+          email,
+          age,
+          userName,
+          password,
+        }
+      );
+
+      const responseData = response.data;
+
+      axios.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${responseData.token}`;
+
+      setUserFunction(responseData);
+
+      setFirstName('');
+      setLastName('');
+      setEmail('');
+      setAge(0);
+      setUserName('');
+      setPassword('');
+
+      localStorage.setItem('user', JSON.stringify(responseData))
+
+      navigate('/feed')
+    } catch (e) {
+      console.log("Error", e);
     }
-    console.log(firstName, lastName, mail, age, userName, password);
   };
 
   return (
-    <div className="authPage">
-      <div className="authDiv" id="regLeft">
-        <div className="cover">
-          <h1>Your diaries await</h1>
-          <h2>Along with endless inspiration</h2>
+    <>
+    <ScrollToTop />
+      <div className="authPage">
+        <div className="authDiv" id="regLeft">
+          <div className="cover">
+            <h1>Your diaries await</h1>
+            <h2>Along with endless inspiration</h2>
+          </div>
         </div>
-      </div>
-      {loading && <div className="loading">
-        <h1>Loading...</h1>
+        {loading && <div className="loading">
+          <h1>Loading...</h1>
         </div>}
-      {!loading && (
-      <div className="authDiv" id="regRight">
-        <form onSubmit={onSubmitHandler}>
-          <div className="name">
-            <div id="authInput">
-              <label>First Name</label>
-              <input
-                type="text"
-                placeholder="ex. John"
-                onChange={(e) => setFirstName(e.target.value)}
-                value={firstName}
-              />
-              {firstNameMessage && (
-                <p className="input-alert">{firstNameMessage}</p>
+        {!loading && (
+          <div className="authDiv" id="regRight">
+            <form onSubmit={onSubmitHandler}>
+              <div className="name">
+                <div id="authInput">
+                  <label>First Name</label>
+                  <input
+                    type="text"
+                    placeholder="ex. John"
+                    onChange={(e) => setFirstName(e.target.value)}
+                    value={firstName}
+                  />
+                  {firstNameMessage && (
+                    <p className="input-alert">{firstNameMessage}</p>
+                  )}
+                </div>
+                <div id="authInput">
+                  <label>Last Name</label>
+                  <input
+                    type="text"
+                    placeholder="ex. Doe"
+                    onChange={(e) => setLastName(e.target.value)}
+                    value={lastName}
+                  />
+                  {lastNameMessage && (
+                    <p className="input-alert">{lastNameMessage}</p>
+                  )}
+                </div>
+              </div>
+              <div className="authInput">
+                <label>Email</label>
+                <input
+                  type="text"
+                  placeholder="ex. example@email.com"
+                  onChange={(e) => setEmail(e.target.value)}
+                  value={email}
+                />
+                {emailMessage && <p className="input-alert">{emailMessage}</p>}
+              </div>
+              <div className="authInput">
+                <label>Age</label>
+                <input
+                  type="number"
+                  placeholder="ex. 18"
+                  onChange={(e) => setAge(e.target.value)}
+                  value={age}
+                />
+                {ageMessage && <p className="input-alert">{ageMessage}</p>}
+              </div>
+              <div className="authInput">
+                <label>Username</label>
+                <input
+                  type="text"
+                  placeholder="ex. johndoe123"
+                  onChange={(e) => setUserName(e.target.value)}
+                  value={userName}
+                />
+                {userNameMessage && (
+                  <p className="input-alert">{userNameMessage}</p>
+                )}
+              </div>
+              <div className="authInput">
+                <label>Password</label>
+                <input
+                  type="password"
+                  placeholder="********"
+                  onChange={(e) => setPassword(e.target.value)}
+                  value={password}
+                />
+                {passwordMessage && (
+                  <p className="input-alert">{passwordMessage}</p>
+                )}
+              </div>
+              {error && (
+                <p style={{ color: "red", fontSize: "11px", marginBottom: "5px" }}>{error}</p>
               )}
-            </div>
-            <div id="authInput">
-              <label>Last Name</label>
-              <input
-                type="text"
-                placeholder="ex. Doe"
-                onChange={(e) => setLastName(e.target.value)}
-                value={lastName}
-              />
-              {lastNameMessage && (
-                <p className="input-alert">{lastNameMessage}</p>
-              )}
-            </div>
+              <div className="authButton">
+                <button onClick={onSubmitHandler}>Register</button>
+              </div>
+            </form>
           </div>
-          <div className="authInput">
-            <label>Email</label>
-            <input
-              type="text"
-              placeholder="ex. example@mail.com"
-              onChange={(e) => setMail(e.target.value)}
-              value={mail}
-            />
-            {mailMessage && <p className="input-alert">{mailMessage}</p>}
-          </div>
-          <div className="authInput">
-            <label>Age</label>
-            <input
-              type="number"
-              placeholder="ex. 18"
-              onChange={(e) => setAge(e.target.value)}
-              value={age}
-            />
-            {ageMessage && <p className="input-alert">{ageMessage}</p>}
-          </div>
-          <div className="authInput">
-            <label>Username</label>
-            <input
-              type="text"
-              placeholder="ex. johndoe123"
-              onChange={(e) => setUserName(e.target.value)}
-              value={userName}
-            />
-            {userNameMessage && (
-              <p className="input-alert">{userNameMessage}</p>
-            )}
-          </div>
-          <div className="authInput">
-            <label>Password</label>
-            <input
-              type="password"
-              placeholder="********"
-              onChange={(e) => setPassword(e.target.value)}
-              value={password}
-            />
-            {passwordMessage && (
-              <p className="input-alert">{passwordMessage}</p>
-            )}
-          </div>
-          {error && (
-            <p style={{ color: "red", fontSize: "11px", marginBottom: "5px" }}>{error}</p>
-          )}
-          <div className="authButton">
-            <button onClick={registerUserHandler}>Register</button>
-          </div>
-        </form>
+        )}
       </div>
-      )}
-    </div>
+    </>
   );
 };
 
