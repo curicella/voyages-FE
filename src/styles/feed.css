@@ -1,0 +1,41 @@
+.feed {
+    width: 100%;
+    margin: 80px 0px 60px;
+}
+.header {
+    display: flex;
+    justify-content: center;
+    padding: 0 10px 20px;
+    border-bottom: 1px solid #060a1a4d;
+}
+.header h2 {
+    font-size: 35px;
+    font-weight: 300;
+    padding: 10px 30px 0;
+}
+
+.searchContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.searchContainer input {
+    width: 55%;
+    margin: 30px;
+    height: 40px;
+    font-size: 25px;
+    padding: 10px 30px;
+    background-color: #060a1a6a ;
+    border: none;
+    color: #dddddd;
+    outline: none;
+    transition: transform 0.3s ease;
+}
+.searchContainer :hover {
+    transform: scale(1.02);
+}
+::placeholder {
+    color: #cacaca;
+    font-weight: 300;
+    opacity: 0.3;
+}

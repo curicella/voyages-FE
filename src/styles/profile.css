@@ -1,22 +1,50 @@
-.header {
-    padding-bottom: 20px;
-}
-.profileHeader {
-    width: -webkit-fill-available;
-    height: 60px;
-    background-color: #343b4985;
+.pHeader {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+    padding: 0 10px 20px;
+    border-bottom: 1px solid #060a1a4d;
 }
-.showDiaries {
-    width: 50%;
-    display: grid;
-    place-content: center;
+
+.pHeader h2{
+    font-size: 35px;
+    font-weight: 300;
 }
-.profileHeader :hover {
-    background-color: #252b35af;
-    transition: ease 0.3s;
+
+.profileMain {
+    display: flex;
+    flex-direction: row;
 }
-.showDiaries a {
-    font-size: 25px;
+
+.sideBar {
+    width: 60%; 
+    min-height: 100vh; /* Ensure the sidebar covers the full height of the viewport */
+    background-color: #343b49;
+    display: flex;
+    flex-direction: column;
+    padding: 50px 50px 70px; /* Adjust padding for better alignment */
+}
+
+li.menuTitle {
+    list-style: none;
+    border-bottom: #1c202a 1px solid;
+    padding-top: 20px;
+    font-weight: bold; /* Make menu titles bold */
+}
+
+li.menuItem {
+    list-style-type: circle; /* Use list-style-type instead of list-style */
+    padding: 10px 0 10px;
+    margin-left: 10px; /* Add left margin for indentation */
+}
+
+/* Media Query for responsiveness */
+@media screen and (max-width: 768px) {
+    .sideBar {
+        width: 100%; /* Make the sidebar full width on small screens */
+        padding: 20px; /* Adjust padding */
+    }
+
+    li.menuTitle, li.menuItem {
+        font-size: 0.9em; /* Adjust font size for better readability */
+    }
 }

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { MyContext } from "../../context/myContext";
 import "C:/Users/ICSISTEM/Desktop/VoyagesFE/voyagesFE/src/styles/nav.css"
 import axios from "axios";
@@ -57,7 +57,8 @@ const MyNavigation = () =>
               <div className="navigation-link">
                 <NavLink to="/feed"><img className="logo" src="./logo.png" alt="logo"/></NavLink>
               </div>
-              <button className="createNew button">Create new Diary</button>
+              <Link to="/create"><button className="createNew button">Create new Diary</button></Link>
+              
             </div>
 
             <div className="rightSide">

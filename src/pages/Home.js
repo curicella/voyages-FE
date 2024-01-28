@@ -24,7 +24,6 @@ const Home = () => {
             Join us today to turn your wanderlust into reality and be part of a global network of adventurers.
             Your next unforgettable adventure is just a click away.</p>
           <Link to="/registration" className="btn-flip" data-back="today" data-front="Register"></Link>
-          <Link to="/feed" className="btn-flip" data-back="feed" data-front="go to"></Link>
         </div>
         <Link to="/feed"></Link>
       </div>

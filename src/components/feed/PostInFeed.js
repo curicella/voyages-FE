@@ -1,47 +1,44 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "C:/Users/ICSISTEM/Desktop/VoyagesFE/voyagesFE/src/styles/post.css"
 import StarRating from "./StarRating";
 import Heart from "react-animated-heart";
 
-const PostInFeed = ({ initialImg, initialTitle, initialDesc, initialOR, initialUR, initialRating}) => {
-  const [img, setImg] = useState(initialImg);
-  const [title, setTitle] = useState(initialTitle);
-  const [desc, setDesc] = useState(initialDesc);
-  const [overrated, setOverrated]= useState(initialOR);
-  const [underrated, setUnderrated]= useState(initialUR);
-  const [rating, setRating] = useState(initialRating);
+const PostInFeed = ({ data }) => {
+  const [img, setImg] = useState('');
+  const [title, setTitle] = useState('');
+  const [desc, setDesc] = useState('');
+  const [overrated, setOverrated]= useState('');
+  const [underrated, setUnderrated]= useState('');
+  const [rating, setRating] = useState('');
   const [likes, setLikes] = useState(0);
   const [isClick, setClick] = useState(false);
 
-  const handleRatingChange = (newRating) => {
-    setRating(newRating);
-  };
+
+  if (!data) return <p>Loading</p>;
 
   return (
     <div className="postFrame">
         <div className="postImg">
-            <img src={"./santoriniCrop.jpeg"} alt="Post"/> 
+            <img src={data.imageUrl} alt="Post"/> 
             {/* src={img} */}
         </div>
         <div className="postContent">
             <div className="postDesc">
-                <h3>{title}Title</h3>
+                <h3>{data.title}</h3>
                 <div className="desc">
-                    <p>{desc}Inspect the internal state handling of the react-animated-heart component. 
-                    It might be managing the click state internally and toggling the like status incorrectly. 
-                    If the library provides any callbacks or event handlers, check if they are being used correctly.</p>
+                    <p>{data.description}</p>
                     </div>
                 <div className="our">
-                    <h4>Overrated spots: {overrated}House of cards</h4>
-                    <h4>Underrated spots: {underrated}Lords boutique</h4>
+                    <h4>Overrated spots: {data.overratedSpots}</h4>
+                    <h4>Underrated spots: {data.underratedSpots}</h4>
                 </div>
                 
             </div>
             <div className="interaction">
                 <div className="rating">
-                    <StarRating rating={rating} onRatingChange={handleRatingChange}/>
-                    <span className="displayRating">{rating}/5</span>
+                    <StarRating rating={data.rating} onRatingChange={() => {}}/>
+                    <span className="displayRating">{data.rating}/5</span>
                 </div>
 
                 <div className="like">
@@ -57,9 +54,6 @@ const PostInFeed = ({ initialImg, initialTitle, initialDesc, initialOR, initialU
                             setLikes(prevLikes => (isClick ? prevLikes - 1 : prevLikes + 1)); */}
                     <span>{likes}</span>
                 </div> 
-            </div>
-            <div className="signature">
-                <p>by: User</p>
             </div>
         </div>
     </div>

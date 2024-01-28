@@ -12,11 +12,15 @@ import { useContext, useEffect } from "react";
 import { MyContext } from "./context/myContext";
 import axios from "axios";
 import About from "./pages/About";
-import Profile from "./pages/Profile";
+import Profile from "./pages/Profile/Profile";
+import Create from "./pages/Create";
+import LikedDiaries from "./pages/Profile/likedDiaries";
+import EditProfile from "./pages/Profile/editProfile";
 
 function App() {
   const { setUserFunction } = useContext(MyContext);
-
+  const data = localStorage.getItem("user");
+  const currentUser = JSON.parse(data);
   useEffect(() => {
     const data = localStorage.getItem("user");
     const currentUser = JSON.parse(data);
@@ -27,20 +31,34 @@ function App() {
       ] = `Bearer ${currentUser.token}`;
     }
   }, []);
-
+console.log(currentUser);
   return (
     <>
       <MyNavigation />
       <Routes>
         <Route path="/" element={<Navigate to="/home" />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/registration" element={<Registration />} />
-        <Route path="/feed" element={<Feed/>}/>
-        <Route path="/search" element={<Search/>}/>
-        <Route path="/profile" element={<Profile/>}/>
-        {/* <Route path="/myDiaries" element={<Profile/>}/> */}
+        <>{!currentUser && (
+          <>
+          <Route path="/home" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/registration" element={<Registration />} />
+          </>
+        )}
+        </>
+        <>{currentUser && (
+          <>
+          <Route path="/feed" element={<Feed/>}/>
+          <Route path="/search" element={<Search/>}/>
+          <Route path="/profile" element={<Profile/>}/>
+          <Route path="/create" element={<Create/>}/>
+          <Route path="/likedDiaries" element={<LikedDiaries/>}/>
+          <Route path="/editProfile" element={<EditProfile/>}/>
+          </>
+        )}
+        </>
+        
+        
         <Route path="*" element={<ErrorPage />} />
       </Routes>
       <Footer/>
