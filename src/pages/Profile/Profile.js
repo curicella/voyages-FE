@@ -9,7 +9,7 @@ import "C:/Users/ICSISTEM/Desktop/VoyagesFE/voyagesFE/src/styles/profile.css"
 
 const getAllDiariesByUserId = async (userId) => {
   try {
-    const diaries = await (await axios.get(`https://localhost:7030/api/Diaries/user/${userId}`)).data;
+    const diaries = await (await axios.get(`http://elacuric-001-site1.ctempurl.com/api/Diaries/user/${userId}`)).data;
     console.log(diaries);
     return diaries;
   } catch (error) {
@@ -18,7 +18,7 @@ const getAllDiariesByUserId = async (userId) => {
 }
 const deleteUserHandler = async (userId) => {
   try {
-      await axios.delete(`https://localhost:7030/api/Users/delete/${userId}`);
+      await axios.delete(`http://elacuric-001-site1.ctempurl.com/api/Users/delete/${userId}`);
       localStorage.removeItem('user');
       window.location.href = '/home';
   } catch (error) {

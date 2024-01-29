@@ -67,7 +67,7 @@ const Registration = () => {
 
     try {
       const response = await axios.post(
-        "https://localhost:7030/api/Users/register",
+        "http://elacuric-001-site1.ctempurl.com/api/Users/register",
         {
           firstName,
           lastName,

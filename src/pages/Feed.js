@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 
 const getAllDiaries = async () => {
   try {
-    const diaries = await (await axios.get('https://localhost:7030/api/Diaries')).data
+    const diaries = await (await axios.get('http://elacuric-001-site1.ctempurl.com/api/Diaries')).data
     console.log(diaries);
     return diaries;
   } catch (error) {

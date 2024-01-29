@@ -9,7 +9,7 @@ import "C:/Users/ICSISTEM/Desktop/VoyagesFE/voyagesFE/src/styles/profile.css"
 
 const fetchLikedDiaries = async (userId) => {
   try {
-    const likedDiaries = await (await axios.get(`https://localhost:7030/api/DiaryLikes/user/${userId}`)).data;      return likedDiaries;
+    const likedDiaries = await (await axios.get(`http://elacuric-001-site1.ctempurl.com/api/DiaryLikes/user/${userId}`)).data;      return likedDiaries;
   } catch (error) {
       console.error('Error fetching liked diaries:', error);
       return []; // Return empty array in case of error

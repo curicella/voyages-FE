@@ -81,7 +81,7 @@ const Create = () => {
           setLoading(true);
     
           const response = await axios.post(
-            "https://localhost:7030/api/Diaries",
+            "http://elacuric-001-site1.ctempurl.com/api/Diaries",
             {
                 imageUrl: img,
                 title: title,

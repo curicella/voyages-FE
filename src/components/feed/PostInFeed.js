@@ -29,10 +29,10 @@ const PostInFeed = ({ data }) => {
   const handleLike = async () => {
     try {
       if (data.likedDiaries?.some(l => l.userId === currentUser?.id)) {
-        await axios.delete(`https://localhost:7030/api/diarylikes/${data.likedDiaries.find(ld => ld.userId === currentUser.id)?.id}`);
+        await axios.delete(`http://elacuric-001-site1.ctempurl.com/api/diarylikes/${data.likedDiaries.find(ld => ld.userId === currentUser.id)?.id}`);
         data.likedDiaries.filter(ld => ld.id !== data.likedDiaries.find(ld => ld.userId === currentUser.id)?.id);
       } else {
-        const response = await axios.post("https://localhost:7030/api/diarylikes", {
+        const response = await axios.post("http://elacuric-001-site1.ctempurl.com/api/diarylikes", {
           userId: currentUser.id,
           diaryId: data.id
         })
