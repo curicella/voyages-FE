@@ -35,9 +35,9 @@ console.log(currentUser);
     <>
       <MyNavigation />
       <Routes>
-        <Route path="/" element={<Navigate to="/home" />} />
         <>{!currentUser && (
           <>
+          <Route path="/" element={<Navigate to="/home" />} />
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/about" element={<About />} />
@@ -47,6 +47,7 @@ console.log(currentUser);
         </>
         <>{currentUser && (
           <>
+          <Route path="/" element={<Navigate to="/feed" />} />
           <Route path="/feed" element={<Feed/>}/>
           <Route path="/search" element={<Search/>}/>
           <Route path="/profile" element={<Profile/>}/>

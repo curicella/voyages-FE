@@ -183,6 +183,7 @@ const Registration = () => {
                   onChange={(e) => setPassword(e.target.value)}
                   value={password}
                 />
+                <span>Password must contain at least one uppercase letter, number and symbol</span>
                 {passwordMessage && (
                   <p className="input-alert">{passwordMessage}</p>
                 )}
