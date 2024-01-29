@@ -11,11 +11,37 @@ const PostInFeed = ({ data }) => {
   const [overrated, setOverrated]= useState('');
   const [underrated, setUnderrated]= useState('');
   const [rating, setRating] = useState('');
-  const [likes, setLikes] = useState(0);
+  const [likes, setLikes] = useState(14);
   const [isClick, setClick] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null)
+  const [liked, setLiked] = useState(false);
 
+  useEffect(() => {
+    let ls = JSON.parse(localStorage.getItem('user'));
+    if (ls) setCurrentUser(ls.user);
+    console.log(data);
+  }, [localStorage.getItem('user')]);
 
-  if (!data) return <p>Loading</p>;
+  useEffect(() => {
+    setLiked(data.likedDiaries?.some(l => l.userId === currentUser?.id));
+  }, [data, currentUser]);
+
+  const handleLike = async () => {
+    try {
+      if (data.likedDiaries?.some(l => l.userId === currentUser?.id)) {
+        await axios.delete(`https://localhost:7030/api/diarylikes/${data.likedDiaries.find(ld => ld.userId === currentUser.id)?.id}`);
+        data.likedDiaries.filter(ld => ld.id !== data.likedDiaries.find(ld => ld.userId === currentUser.id)?.id);
+      } else {
+        const response = await axios.post("https://localhost:7030/api/diarylikes", {
+          userId: currentUser.id,
+          diaryId: data.id
+        })
+        data.likedDiaries.push(response.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <div className="postFrame">
@@ -39,20 +65,9 @@ const PostInFeed = ({ data }) => {
             <span className="displayRating">{data.rating}/5</span>
           </div>
           <div className="like">
-          <Heart isClick={isClick} onClick={() => { 
-            setClick(!isClick); 
-            setLikes(likes + 1); 
-            if (isClick) 
-                setLikes(likes-1);
-            }
-          } 
-            />
-            {/* isClick={isClick} 
-                onClick={() => { 
-                setClick(!isClick); 
-                setLikes(prevLikes => (isClick ? prevLikes - 1 : prevLikes + 1));
-                */}
-          <span>{likes}</span>
+          <Heart isClick={liked} onClick={() => handleLike()} 
+          />
+          <span>{data.likeCount}</span>
                 
         </div>
       </div>

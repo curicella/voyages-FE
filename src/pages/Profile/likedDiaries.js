@@ -72,16 +72,7 @@ const LikedDiaries = () => {
                   likedDiaries.map((item, index) => (
                     <PostInFeed 
                       key={index} 
-                      data={{
-                          id: item.diary.id,
-                          title: item.diary.title,
-                          description: item.diary.description,
-                          imageUrl: item.diary.imageUrl,
-                          overratedSpots: item.diary.overratedSpots,
-                          underratedSpots: item.diary.underratedSpots,
-                          rating: item.diary.rating,
-                          likes: item.diary.likes
-                      }}
+                      data={item.diary}
                     />
                   ))
                 }
