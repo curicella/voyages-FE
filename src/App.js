@@ -40,10 +40,10 @@ console.log(currentUser);
           <Route path="/" element={<Navigate to="/home" />} />
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/about" element={<About />} />
           <Route path="/registration" element={<Registration />} />
           </>
         )}
+        <Route path="/about" element={<About />} />
         </>
         <>{currentUser && (
           <>
