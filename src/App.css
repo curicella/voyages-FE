@@ -2,6 +2,8 @@
   --backg: #3a4350;
   --speed: 0.5s;
 }
+
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -14,6 +16,7 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #060a1a;
 }
+
 body {
   margin: 0;
   padding: 0;
@@ -26,7 +29,7 @@ body {
   margin: 0;
   padding: 0;
 }
-/* Navigation.css */
+
 a {
   color: #ffffff;
   text-decoration: none;
@@ -35,38 +38,104 @@ a {
   font-weight: 300;
 }
 
-/* feed and posts */
-
 button {
   background-color: transparent;
   border: none;
   outline: none;
   cursor: pointer;
 }
+
 .on {
   color: #d4af37;
 }
+
 .off {
   color: #ccc;
 }
+
 .star {
   font-size: 24px;
 }
 
-/* Footer.css */
+/* Footer */
 .footer {
   background: #060a1a;
   background: linear-gradient(0deg, #060a1a 0%, #272b3b 30%, var(--backg) 100%);
   color: white;
-  padding: 5px 0 5px 0;
+  padding: 30px 0; /* Increased padding for better spacing */
   text-align: center;
+  width: 100%;
   position: relative;
   bottom: 0;
-  width: 100%;
-  height: 300px;
 }
 
-.btn-flip{
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-section {
+  flex: 1;
+  margin: 20px;
+  max-width: 300px; /* Limit width of each section on smaller screens */
+}
+
+.footer-section h3 {
+  font-size: 20px; /* Reduce heading font size */
+  margin-bottom: 15px;
+  font-weight: 300;
+}
+
+.footer-section p {
+  font-size: 14px; /* Reduce paragraph font size */
+  margin-bottom: 10px;
+}
+
+.footer-section a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+  color: #060a1a; /* Change link color on hover */
+}
+
+.social-icons {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.social-icons li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.social-icons li:last-child {
+  margin-right: 0;
+}
+
+.social-icons a {
+  color: white;
+  font-size: 18px; /* Reduce social icon font size */
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #060a1a; /* Change social icon color on hover */
+}
+
+.footer-bottom-text {
+  margin-top: 30px;
+  font-size: 12px; /* Reduce bottom text font size */
+}
+
+.btn-flip {
   opacity: 1;
   outline: 0;
   color: #fff;
@@ -82,46 +151,61 @@ button {
   width: 250px;
   height: 80px;
   margin-top: 40px;
-  
-  &:hover{
-    
-    &:after{
-      opacity: 1;
-      transform: translateY(0) rotateX(0);
-    }
-    
-    &:before{
-      opacity: 0;
-      transform: translateY(50%) rotateX(90deg);
-    }
+}
+
+.btn-flip:hover:after {
+  opacity: 1;
+  transform: translateY(0) rotateX(0);
+}
+
+.btn-flip:hover:before {
+  opacity: 0;
+  transform: translateY(50%) rotateX(90deg);
+}
+
+.btn-flip:after {
+  top: 0;
+  left: 0;
+  opacity: 0;
+  width: 100%;
+  color: #323237;
+  display: block;
+  transition: var(--speed);
+  position: absolute;
+  background: #777777;
+  content: attr(data-back);
+  transform: translateY(-50%) rotateX(90deg);
+}
+
+.btn-flip:before {
+  top: 0;
+  left: 0;
+  opacity: 1;
+  color: #adadaf;
+  display: block;
+  padding: 0 30px;
+  line-height: 40px;
+  transition: var(--speed);
+  position: relative;
+  background: #060a1a6a;
+  content: attr(data-front);
+  transform: translateY(0) rotateX(0);
+}
+
+@media (max-width: 768px) {
+  .btn-flip {
+    width: 200px;
+    height: 60px;
+    font-size: 14px;
+    line-height: 30px;
   }
-  
-  &:after{
-    top: 0;
-    left: 0;
-    opacity: 0;
-    width: 100%;
-    color: #323237;
-    display: block;
-    transition: var(--speed);
-    position: absolute;
-    background: #777777;
-    content: attr(data-back);
-    transform: translateY(-50%) rotateX(90deg);
-  }
-  
-  &:before{
-    top: 0;
-    left: 0;
-    opacity: 1;
-    color: #adadaf;
-    display: block;
-    padding: 0 30px;
-    line-height: 40px;
-    transition: var(--speed);
-    position: relative;
-    background: #060a1a6a;
-    content: attr(data-front);
-    transform: translateY(0) rotateX(0);
+}
+
+@media (max-width: 576px) {
+  .btn-flip {
+    width: 150px;
+    height: 50px;
+    font-size: 12px;
+    line-height: 25px;
   }
 }

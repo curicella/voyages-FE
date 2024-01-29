@@ -3,36 +3,53 @@ import { Link, useNavigate } from 'react-router-dom'
 import ScrollToTop from '../../components/shared/ScrollToTop'
 import PostInFeed from '../../components/feed/PostInFeed'
 import axios from "axios";
-import { useState, useEffect } from 'react';
+import { MyContext } from '../../context/myContext';
+import { useState, useEffect, useContext } from 'react';
 import "C:/Users/ICSISTEM/Desktop/VoyagesFE/voyagesFE/src/styles/profile.css"
 
-const getAllDiaries = async () => {
-    try {
-      const diaries = await (await axios.get('https://localhost:7030/api/Diaries')).data
-      console.log(diaries);
-      return diaries;
-    } catch (error) {
-      console.log(error);
-    }
+const fetchLikedDiaries = async (userId) => {
+  try {
+    const likedDiaries = await (await axios.get(`https://localhost:7030/api/DiaryLikes/user/${userId}`)).data;      return likedDiaries;
+  } catch (error) {
+      console.error('Error fetching liked diaries:', error);
+      return []; // Return empty array in case of error
   }
+};
 
 const LikedDiaries = () => {
-    const [diaries, setDiaries] = useState(null);
+  const { user, setUserFunction } = useContext(MyContext);
+  const navigate = useNavigate();
+  const [likedDiaries, setLikedDiaries] = useState([]);
+  const storedUser = JSON.parse(localStorage.getItem('user'));
+  const userId = storedUser?.user?.id;
 
-    useEffect(() => {
-      (
-        async () => {
-          const data = await getAllDiaries();
-          setDiaries([...data]);
-        }
-      )()
-    }, []);
-    const navigate = useNavigate();
+  useEffect(() => {
+    const fetchData = async () => {
+      if (userId) {
+        const likedDiaries = await fetchLikedDiaries(userId);
+        setLikedDiaries(likedDiaries);
+        console.log(likedDiaries);
+      }
+    };
+
+    fetchData();
+  }, [userId]);
+
+  const logoutUserHandler = () =>
+  {
+   setUserFunction(null);
+   localStorage.removeItem("user");
+   axios.defaults.headers.common[
+     "Authorization"
+   ] = '';
+   navigate("/home");
+  };
+
   return (
     <div>
         <ScrollToTop/>
         <div className='feed'>
-            <div className='header'>
+            <div className='pHeader'>
                 <h2>Inspiration, currated by you</h2>
             </div>
             <div className='profileMain'>
@@ -45,14 +62,28 @@ const LikedDiaries = () => {
 
                     <ul>
                         <li className='menuTitle'><p>Account settings</p></li>
-                        <li className='menuItem'><Link to='/editProfile'>Edit profile</Link></li>
+                        <li className='menuItem'><Link to="/home" onClick={logoutUserHandler} >Log Out</Link></li>
+                        <li className='menuItem'><Link to="/home" >Delete account</Link></li>
                     </ul>
                 </div>
                 <div className='diaries'>
                 {
-                    diaries?.map((diary, index) => (
-                    <PostInFeed key={index} data={diary}/>
-                    ))
+                  likedDiaries && likedDiaries.length > 0 &&
+                  likedDiaries.map((item, index) => (
+                    <PostInFeed 
+                      key={index} 
+                      data={{
+                          id: item.diary.id,
+                          title: item.diary.title,
+                          description: item.diary.description,
+                          imageUrl: item.diary.imageUrl,
+                          overratedSpots: item.diary.overratedSpots,
+                          underratedSpots: item.diary.underratedSpots,
+                          rating: item.diary.rating,
+                          likes: item.diary.likes
+                      }}
+                    />
+                  ))
                 }
                 </div>
             </div>

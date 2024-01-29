@@ -36,8 +36,9 @@ const Feed = () => {
       </div>
 
       {
-        diaries?.map((diary, index) => (
-          <PostInFeed key={index} data={diary}/>
+        diaries && Array.isArray(diaries) && diaries.length > 0 &&
+        diaries.slice().reverse().map((diary, index) => (
+          <PostInFeed key={index} data={diary} />
         ))
       }
     </div>

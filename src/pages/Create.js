@@ -79,21 +79,6 @@ const Create = () => {
     
         try {
           setLoading(true);
-
-        //   const newPost = {
-        //     imageUrl: img,
-        //     title: title,
-        //     description: desc,
-        //     overratedSpots: overrated,
-        //     underratedSpots: underrated,
-        //     rating: rating,
-        //     isPublic: isPublic,
-        //     userId: currentUser.id
-        // };
-
-        // console.log(newPost);
-
-        // return;
     
           const response = await axios.post(
             "https://localhost:7030/api/Diaries",
@@ -145,9 +130,6 @@ const Create = () => {
                         <div className="rating">
                             <StarRating name="rating" rating={rating} onRatingChange={handleRatingChange}/>
                             <span className="displayRating">{rating}/5</span>
-                        </div>
-                        <div className="rating">
-                            <input name='isPublic' type='checkbox' value={isPublic}/>
                         </div>
                     </div>
                 </div>

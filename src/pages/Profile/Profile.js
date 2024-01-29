@@ -3,31 +3,51 @@ import { Link, useNavigate } from 'react-router-dom'
 import ScrollToTop from '../../components/shared/ScrollToTop'
 import PostInFeed from '../../components/feed/PostInFeed'
 import axios from "axios";
-import { useState, useEffect } from 'react';
+import { MyContext } from '../../context/myContext';
+import { useState, useEffect, useContext } from 'react';
 import "C:/Users/ICSISTEM/Desktop/VoyagesFE/voyagesFE/src/styles/profile.css"
 
-const getAllDiaries = async () => {
-    try {
-      const diaries = await (await axios.get('https://localhost:7030/api/Diaries')).data
-      console.log(diaries);
-      return diaries;
-    } catch (error) {
-      console.log(error);
-    }
+const getAllDiariesByUserId = async (userId) => {
+  try {
+    const diaries = await (await axios.get(`https://localhost:7030/api/Diaries/user/${userId}`)).data;
+    console.log(diaries);
+    return diaries;
+  } catch (error) {
+    console.log(error);
   }
+}
+const deleteUserHandler = async (userId) => {
+  try {
+      await axios.delete(`https://localhost:7030/api/Users/delete/${userId}`);
+      localStorage.removeItem('user');
+      window.location.href = '/home';
+  } catch (error) {
+      console.error('Error deleting user:', error);
+  }
+}
+
 
 const Profile = () => {
-    const [diaries, setDiaries] = useState(null);
+  const { user, setUserFunction } = useContext(MyContext);
+  const [diaries, setDiaries] = useState([]);
+  const storedUser = JSON.parse(localStorage.getItem('user'));
+  const userId = storedUser?.user?.id;
+  const navigate = useNavigate(); 
+  useEffect(() => {
+    if (userId) {
+      getAllDiariesByUserId(userId).then(diaries => setDiaries(diaries));
+    }
+  }, [userId]); 
+  const logoutUserHandler = () =>
+  {
+   setUserFunction(null);
+   localStorage.removeItem("user");
+   axios.defaults.headers.common[
+     "Authorization"
+   ] = '';
+   navigate("/home");
+  };
 
-    useEffect(() => {
-      (
-        async () => {
-          const data = await getAllDiaries();
-          setDiaries([...data]);
-        }
-      )()
-    }, []);
-    const navigate = useNavigate();
   return (
     <div>
         <ScrollToTop/>
@@ -45,12 +65,14 @@ const Profile = () => {
 
                     <ul>
                         <li className='menuTitle'><p>Account settings</p></li>
-                        <li className='menuItem'><Link to='/editProfile'>Edit Profile</Link></li>
+                        <li className='menuItem'><Link to="/home" onClick={logoutUserHandler} >Log Out</Link></li>
+                        <li className='menuItem'><Link to="/home" onClick={deleteUserHandler} >Delete Account</Link></li>
                     </ul>
                 </div>
                 <div className='diaries'>
                 {
-                    diaries?.map((diary, index) => (
+                    diaries && Array.isArray(diaries) && diaries.length > 0 &&
+                    diaries.slice().reverse().map((diary, index) => (
                     <PostInFeed key={index} data={diary}/>
                     ))
                 }

@@ -1,60 +1,32 @@
-body {
-  margin: 0;
-  padding: 0;
+/* AboutPage.css */
+.about-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
-* {
-  margin: 0;
-  padding: 0;
+.about-container h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
 }
 
-.aboutMain {
-    margin: 10px 0 10px 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.aHeader{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 40px;
+.about-container p {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 15px;
 }
 
-.aboutCards{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 1000px;
-  border-bottom: #0f0128 solid;
-  margin: 0 0 10px 0;
-}
-.aboutCard:hover{
-  box-shadow: 0 4px 8px 0 #0f0128;
-  transition: 0.2s;
-}
-.aboutCard {
-    height: 300px;
-    width: 400px;
-    margin: 40px;
-    border: 2px solid;
-    background-color: #39416F;
-    border-color: #0f01288e;
-    border-radius: 12px;
-}
+/* Media Query for Responsive Design */
+@media screen and (max-width: 768px) {
+  .about-container {
+      padding: 10px;
+  }
 
-.cardContent {
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+  .about-container h1 {
+      font-size: 28px;
+  }
 
-.ImagePart{
-  display: flex;
-  flex-direction: row;
-  margin: 30px;
+  .about-container p {
+      font-size: 16px;
+  }
 }
