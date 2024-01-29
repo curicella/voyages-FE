@@ -1,6 +1,8 @@
 // Footer.js
 import React from 'react';
-import { Link } from 'react-router-dom'; // Import Link for routing
+import { Link } from 'react-router-dom';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+ // Import Link for routing
 
 function Footer() {
     return (
@@ -19,13 +21,13 @@ function Footer() {
                 <div className="footer-section social">
                     <h3>Connect With Us</h3>
                     <ul className="social-icons">
-                        <li><a href="#"><i className="fab fa-facebook"></i></a></li>
-                        <li><a href="#"><i className="fab fa-twitter"></i></a></li>
-                        <li><a href="#"><i className="fab fa-instagram"></i></a></li>
+                        <li><a href="https://www.instagram.com"><i className="fab fa-instagram"></i></a></li>
+                        <li><a href="https://rs.linkedin.com"><i className="fab fa-linkedin"></i></a></li>
+                        <li><a href="https://www.facebook.com"><i className="fab fa-facebook"></i></a></li>
                     </ul>
                 </div>
             </div>
-            <p className="footer-bottom-text">Voyages &copy; {new Date().getFullYear()}</p>
+            <p className="footer-bottom-text">Copyright Voyages &copy; {new Date().getFullYear()}</p>
         </div>
     );
 }
