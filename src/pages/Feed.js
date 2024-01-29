@@ -1,5 +1,5 @@
 import React from 'react'
-import 'C:/Users/ICSISTEM/Desktop/VoyagesFE/voyagesFE/src/styles/feed.css'
+import '../styles/feed.css'
 import PostInFeed from "../components/feed/PostInFeed"
 import ScrollToTop from "../components/shared/ScrollToTop";
 import axios from 'axios';

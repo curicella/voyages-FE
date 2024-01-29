@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "C:/Users/ICSISTEM/Desktop/VoyagesFE/voyagesFE/src/styles/post.css"
+import "./post.css"
 
 const StarRating = ({ rating, onRatingChange }) => {
   const [hover, setHover] = useState(0);

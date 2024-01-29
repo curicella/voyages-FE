@@ -15,7 +15,6 @@ import About from "./pages/About";
 import Profile from "./pages/Profile/Profile";
 import Create from "./pages/Create";
 import LikedDiaries from "./pages/Profile/likedDiaries";
-import EditProfile from "./pages/Profile/editProfile";
 
 function App() {
   const { setUserFunction } = useContext(MyContext);
@@ -53,7 +52,6 @@ console.log(currentUser);
           <Route path="/profile" element={<Profile/>}/>
           <Route path="/create" element={<Create/>}/>
           <Route path="/likedDiaries" element={<LikedDiaries/>}/>
-          <Route path="/editProfile" element={<EditProfile/>}/>
           </>
         )}
         </>

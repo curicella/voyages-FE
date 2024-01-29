@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "C:/Users/ICSISTEM/Desktop/VoyagesFE/voyagesFE/src/styles/post.css";
+import './post.css';
 import StarRating from "./StarRating";
 import axios from "axios";
 import Heart from "react-animated-heart";

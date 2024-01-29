@@ -5,7 +5,7 @@ import PostInFeed from '../../components/feed/PostInFeed'
 import axios from "axios";
 import { MyContext } from '../../context/myContext';
 import { useState, useEffect, useContext } from 'react';
-import "C:/Users/ICSISTEM/Desktop/VoyagesFE/voyagesFE/src/styles/profile.css"
+import "./profile.css"
 
 const getAllDiariesByUserId = async (userId) => {
   try {

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState }from 'react'
 import { Link } from 'react-router-dom';
 import StarRating from '../components/feed/StarRating';
-import "C:/Users/ICSISTEM/Desktop/VoyagesFE/voyagesFE/src/styles/create.css"
+import "../styles/create.css"
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import CloudinaryUploadWidget from "../components/CloudinaryUploadWidget";

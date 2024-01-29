@@ -1,0 +1,85 @@
+.pHeader {
+    display: flex;
+    justify-content: center;
+    padding: 20px 10px; /* Increase top and bottom padding */
+    border-bottom: 1px solid #060a1a4d;
+}
+
+.pHeader h2 {
+    font-size: 2.5rem; /* Adjust font size */
+    font-weight: 300;
+    margin: 0; /* Remove default margin */
+}
+
+.profileMain {
+    display: flex;
+    flex-direction: row; /* Default to row layout */
+}
+
+.sideBar {
+    width: 40%; /* Default width for sidebar */
+    min-height: 100vh;
+    background-color: #343b49;
+    padding: 20px; /* Adjust padding */
+}
+
+.mainContent {
+    width: 80%; /* Default width for main content */
+    padding: 20px; /* Adjust padding */
+}
+
+.menuToggle {
+    display: none; /* Hide menu toggle by default */
+}
+
+li.menuTitle {
+    list-style: none;
+    border-bottom: 1px solid #1c202a;
+    padding: 15px 0; /* Increase top and bottom padding */
+    font-weight: bold;
+    font-size: 1.2rem; /* Adjust font size */
+}
+
+li.menuItem {
+    list-style-type: circle;
+    padding: 10px 0;
+    margin-left: 20px; /* Increase left margin for better indentation */
+    font-size: 1rem; /* Adjust font size */
+    color: #ffffff;
+    text-decoration: none;
+    font-family: system-ui;
+    font-weight: 300;
+}
+
+/* Media Query for responsiveness */
+@media screen and (max-width: 768px) {
+    .profileMain {
+        flex-direction: column; /* Change to column layout on smaller screens */
+    }
+
+    .sideBar {
+        width: 100%; /* Make the sidebar full width on small screens */
+        min-height: auto; /* Remove fixed height */
+        overflow-y: auto; /* Add vertical scrollbar if content exceeds viewport */
+    }
+
+    .mainContent {
+        width: 100%; /* Make the main content full width on small screens */
+    }
+
+    .menuToggle {
+        display: block; /* Show menu toggle on smaller screens */
+        padding: 10px;
+        background-color: #343b49;
+        color: #ffffff;
+        border: none;
+        cursor: pointer;
+        text-align: center;
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+
+    .menuToggle:hover {
+        background-color: #1c202a;
+    }
+}

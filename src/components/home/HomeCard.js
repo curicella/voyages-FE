@@ -1,5 +1,5 @@
 import React from "react";
-import "C:/Users/ICSISTEM/Desktop/VoyagesFE/voyagesFE/src/styles/home.css";
+import './home.css';
 
 const HomeCard = () => {
   return (

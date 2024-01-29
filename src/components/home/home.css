@@ -1,0 +1,130 @@
+.image-container {
+  position: relative;
+  overflow: hidden;
+  height: 130vh; /* Adjust the height as needed */
+}
+
+.landing {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.landing img {
+  width: -webkit-fill-available;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 55%; /* Adjust the height as needed */
+  background: linear-gradient(to bottom, #f2f2f200, var(--backg));
+}
+
+.intro {
+  padding-top: 5vh; /* Adjust the padding as needed */
+}
+
+.card {
+  display: flex;
+  flex-direction: row;
+  margin: 20px 5vw; /* Adjust the margin as needed */
+  padding: 20px;
+}
+
+.card:hover {
+  background-color: #060a1a6a;
+  transition: 0.3s ease;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.card-content:hover {
+  background-color: transparent;
+}
+
+.card-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45%;
+}
+
+.card img {
+  max-width: -webkit-fill-available; /* Ensure the image does not exceed its container */
+  height: auto;
+  border-radius: 2px;
+}
+
+h1 {
+  font-weight: lighter;
+  font-size: 3vw; /* Adjust the font size as needed */
+  border-bottom: 1px solid #08080860;
+  padding: 1vh 0;
+}
+
+p {
+  font-size: 2vw; /* Adjust the font size as needed */
+  font-weight: lighter;
+  padding: 1vh 0;
+}
+
+.content-header-div-three {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5vh; /* Adjust the margin as needed */
+}
+
+.content-header-div-three p {
+  padding: 0 5vw; /* Adjust the padding as needed */
+  text-align: center;
+}
+
+#reg {
+  width: 50vw; /* Adjust the width as needed */
+  height: 8vh; /* Adjust the height as needed */
+  background-color: #060a1a6a;
+  display: grid;
+  place-content: center;
+  margin: 2vh 0 4vh; /* Adjust the margin as needed */
+  font-size: 2vw; /* Adjust the font size as needed */
+  font-family: system-ui;
+  font-weight: lighter;
+  border-radius: 2px;
+}
+
+@media (max-width: 768px) {
+  .image-container{
+    height: 50vh;
+  }
+  h1 {
+    font-size: 6vw;
+  }
+
+  p {
+    font-size: 3vw;
+  }
+
+  .card {
+    margin: 10px 5vw;
+    flex-direction: column;
+  }
+  .card-image,
+    .card-content {
+      width: 100%; /* Take full width on smaller screens */
+    }
+}
