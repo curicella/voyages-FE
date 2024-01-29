@@ -1,0 +1,71 @@
+a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 16px;
+  font-family: system-ui;
+  font-weight: 300;
+}
+
+.navigation, .navmenu {
+  display: flex;
+  flex-wrap: wrap; /* Allow flex items to wrap to the next line */
+  align-items: center;
+  justify-content: space-between;
+  background-color: transparent;
+  padding: 7px 20px; /* Adjust padding for smaller screens */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  background: #060a1a;
+  background: linear-gradient(180deg, #060a1ac3 0%, #272b3baf 30%, #505e6900 100%);
+}
+
+.logo {
+  width: 60px;
+  padding-top: 5px;
+}
+
+.navigation-link a, .navLink a {
+  font-size: 18px;
+}
+
+.navigation-link:hover, .navLink:hover {
+  border-bottom: #060a1a4d 3px solid;
+  transition: ease 0.3s;
+}
+
+.leftSide {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 400px;
+}
+
+.basicLinks {
+  display: flex;
+  justify-content: space-around; /* Space around elements */
+  width: 300px;
+}
+
+.button {
+  background-color: #000000;
+  border-radius: 50px;
+  width: 200px;
+  padding: 10px;
+  font-size: 15px;
+  color: #dddddd;
+  transition: transform 0.3s ease;
+}
+
+.button:hover {
+  transform: scale(1.05); /* Scale the button by 10% on hover */
+}
+
+/* Media queries for responsiveness */
+@media (min-width: 768px) {
+  .navigation, .navmenu {
+    padding: 7px 70px; /* Adjust padding for larger screens */
+  }
+}

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { MyContext } from "../../context/myContext";
-import "C:/Users/ICSISTEM/Desktop/VoyagesFE/voyagesFE/src/styles/nav.css"
+import './nav.css'
 import axios from "axios";
 
 const MyNavigation = () =>
