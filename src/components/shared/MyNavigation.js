@@ -1,23 +1,19 @@
 import React, { useContext } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { MyContext } from "../../context/myContext";
-import './nav.css'
+import "./nav.css";
 import axios from "axios";
 
-const MyNavigation = () =>
- {
+const MyNavigation = () => {
   const { user, setUserFunction } = useContext(MyContext);
   const navigate = useNavigate();
-  const logoutUserHandler = () =>
-   {
+  
+  const logoutUserHandler = () => {
     setUserFunction(null);
     localStorage.removeItem("user");
-    axios.defaults.headers.common[
-      "Authorization"
-    ] = '';
+    axios.defaults.headers.common["Authorization"] = "";
     navigate("/home");
   };
-
 
   return (
     <>
@@ -31,7 +27,9 @@ const MyNavigation = () =>
             )}
 
             <div className="navigation-link">
-              <NavLink to="/home"><img className="logo" src="./logo.png" alt="logo"/></NavLink>
+              <NavLink to="/home">
+                <img className="logo" src="./logo.png" alt="logo" />
+              </NavLink>
             </div>
 
             {!user && (
@@ -42,20 +40,24 @@ const MyNavigation = () =>
           </div>
         )}
       </>
-            
+
       <>
         {user && (
           <div className="navmenu">
             <div className="leftSide">
               <div className="navLink">
-                <NavLink to="/feed"><img className="logo" src="./logo.png" alt="logo"/></NavLink>
+                <NavLink to="/feed">
+                  <img className="logo" src="./logo.png" alt="logo" />
+                </NavLink>
               </div>
-              <Link to="/create"><button className="createNew button">Create new Diary</button></Link>
+              <Link to="/create">
+                <button className="createNew button">Create new Diary</button>
+              </Link>
             </div>
 
             <div className="rightSide">
               <div className="basicLinks">
-              <div className="navLink">
+                <div className="navLink">
                   <NavLink to="/feed">Feed</NavLink>
                 </div>
                 <div className="navLink">
@@ -66,9 +68,8 @@ const MyNavigation = () =>
                 </div>
               </div>
             </div>
-            
           </div>
-        )}    
+        )}
       </>
     </>
   );

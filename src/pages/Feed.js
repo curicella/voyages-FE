@@ -1,49 +1,49 @@
-import React from 'react'
-import '../styles/feed.css'
-import PostInFeed from "../components/feed/PostInFeed"
+import React from "react";
+import "../styles/feed.css";
+import PostInFeed from "../components/feed/PostInFeed";
 import ScrollToTop from "../components/shared/ScrollToTop";
-import axios from 'axios';
-import { useState, useEffect } from 'react';
+import axios from "axios";
+import { useState, useEffect } from "react";
 
 const getAllDiaries = async () => {
   try {
-    const diaries = await (await axios.get('http://elacuric-001-site1.ctempurl.com/api/Diaries')).data
-    console.log(diaries);
+    const diaries = await (
+      await axios.get("https://localhost:7030/api/Diaries")
+    ).data;
     return diaries;
   } catch (error) {
     console.log(error);
   }
-}
+};
 
 const Feed = () => {
   const [diaries, setDiaries] = useState(null);
 
   useEffect(() => {
-    (
-      async () => {
-        const data = await getAllDiaries();
-        setDiaries([...data]);
-      }
-    )()
+    (async () => {
+      const data = await getAllDiaries();
+      setDiaries([...data]);
+    })();
   }, []);
 
   return (
     <>
-    <ScrollToTop/>
-    <div className='feed'>
-      <div className='header'> 
-        <h2>Never Miss a Beat: Feed Edition</h2>      
+      <ScrollToTop />
+      <div className="feed">
+        <div className="header">
+          <h2>Never Miss a Beat: Feed Edition</h2>
+        </div>
+
+        {diaries &&
+          Array.isArray(diaries) &&
+          diaries.length > 0 &&
+          diaries
+            .slice()
+            .reverse()
+            .map((diary, index) => <PostInFeed key={index} data={diary} />)}
       </div>
-
-      {
-        diaries && Array.isArray(diaries) && diaries.length > 0 &&
-        diaries.slice().reverse().map((diary, index) => (
-          <PostInFeed key={index} data={diary} />
-        ))
-      }
-    </div>
     </>
-  )
-}
+  );
+};
 
-export default Feed
+export default Feed;

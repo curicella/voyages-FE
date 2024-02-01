@@ -20,7 +20,7 @@ const Login = () => {
       setLoading(true);
 
       const response = await axios.post(
-        "http://elacuric-001-site1.ctempurl.com/api/Users/login",
+        "https://localhost:7030/api/Users/login",
         {
           userName: userName,
           password: password,
@@ -49,48 +49,50 @@ const Login = () => {
 
   return (
     <>
-    <ScrollToTop/>
-    <div className="authPage">
-      <div className="authDiv" id="regLeft">
-      <div className="cover">
-          <h1>Log in</h1>
-          <h2>Type in your credentials</h2>
+      <ScrollToTop />
+      <div className="authPage">
+        <div className="authDiv" id="regLeft">
+          <div className="cover">
+            <h1>Log in</h1>
+            <h2>Type in your credentials</h2>
+          </div>
         </div>
+        {loading && (
+          <div className="loading">
+            <h1>Loading...</h1>
+          </div>
+        )}
+        {!loading && (
+          <div className="authDiv" id="regRight">
+            <form>
+              <div className="authInput">
+                <label>Username</label>
+                <input
+                  type="text"
+                  placeholder="Username"
+                  onChange={(e) => setUserName(e.target.value)}
+                  value={userName}
+                />
+              </div>
+              <div className="authInput">
+                <label>Password</label>
+                <input
+                  type="password"
+                  placeholder="Password..."
+                  onChange={(e) => setPassword(e.target.value)}
+                  value={password}
+                />
+              </div>
+              {error && (
+                <p style={{ color: "red", marginBottom: "1rem" }}>{error}</p>
+              )}
+              <div className="authButton">
+                <button onClick={loginUserHandler}>Login</button>
+              </div>
+            </form>
+          </div>
+        )}
       </div>
-      {loading && 
-      <div className="loading">
-          <h1>Loading...</h1>
-      </div>}
-      {!loading && (
-      <div className="authDiv" id="regRight">
-        <form>
-          <div className="authInput">
-            <label>Username</label>
-            <input 
-              type="text"
-              placeholder="Username"
-              onChange={(e) => setUserName(e.target.value)}
-              value={userName}/>
-          </div>
-          <div className="authInput">
-            <label>Password</label>
-            <input
-              type="password"
-              placeholder="Password..."
-              onChange={(e) => setPassword(e.target.value)}
-              value={password}
-            />
-          </div>
-          {error && (
-            <p style={{ color: "red", marginBottom: "1rem" }}>{error}</p>
-          )}
-          <div className="authButton">
-          <button onClick={loginUserHandler}>Login</button>
-          </div>
-        </form>
-      </div>
-    )}
-    </div>
     </>
   );
 };

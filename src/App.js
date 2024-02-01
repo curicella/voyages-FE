@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Registration from "./pages/Registration";
 import ErrorPage from "./pages/ErrorPage";
-import Feed from "./pages/Feed"
+import Feed from "./pages/Feed";
 import Search from "./pages/Search";
 import MyNavigation from "./components/shared/MyNavigation";
 import Footer from "./components/shared/Footer";
@@ -15,6 +15,7 @@ import About from "./pages/About";
 import Profile from "./pages/Profile/Profile";
 import Create from "./pages/Create";
 import LikedDiaries from "./pages/Profile/likedDiaries";
+import Admin from "./pages/Profile/Admin";
 
 function App() {
   const { setUserFunction } = useContext(MyContext);
@@ -30,37 +31,44 @@ function App() {
       ] = `Bearer ${currentUser.token}`;
     }
   }, []);
-console.log(currentUser);
+  console.log(currentUser);
   return (
     <>
       <MyNavigation />
       <Routes>
-        <>{!currentUser && (
-          <>
-          <Route path="/" element={<Navigate to="/home" />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/registration" element={<Registration />} />
-          </>
-        )}
-        <Route path="/about" element={<About />} />
+        <>
+          {!currentUser && (
+            <>
+              <Route path="/" element={<Navigate to="/home" />} />
+              <Route path="/home" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/registration" element={<Registration />} />
+            </>
+          )}
+          <Route path="/about" element={<About />} />
         </>
-        <>{currentUser && (
-          <>
-          <Route path="/" element={<Navigate to="/feed" />} />
-          <Route path="/feed" element={<Feed/>}/>
-          <Route path="/search" element={<Search/>}/>
-          <Route path="/profile" element={<Profile/>}/>
-          <Route path="/create" element={<Create/>}/>
-          <Route path="/likedDiaries" element={<LikedDiaries/>}/>
-          </>
-        )}
+        <>
+          {currentUser && (
+            <>
+              <Route path="/" element={<Navigate to="/feed" />} />
+              <Route path="/feed" element={<Feed />} />
+              <Route path="/search" element={<Search />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/create" element={<Create />} />
+              <Route path="/likedDiaries" element={<LikedDiaries />} />
+            </>
+          )}
+          {currentUser && currentUser.role === "Admin" && (
+            <>
+              <Route path="/" element={<Navigate to="/feed" />} />
+              <Route path="/admin" element={<Admin />} />
+            </>
+          )}
         </>
-        
-        
+
         <Route path="*" element={<ErrorPage />} />
       </Routes>
-      <Footer/>
+      <Footer />
     </>
   );
 }

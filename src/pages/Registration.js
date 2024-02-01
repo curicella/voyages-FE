@@ -14,7 +14,7 @@ const Registration = () => {
   const [password, setPassword] = useState("");
 
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error] = useState(null);
   const { setUserFunction } = useContext(MyContext);
   const navigate = useNavigate();
 
@@ -66,8 +66,9 @@ const Registration = () => {
     }
 
     try {
+      setLoading(true);
       const response = await axios.post(
-        "http://elacuric-001-site1.ctempurl.com/api/Users/register",
+        "https://localhost:7030/api/Users/register",
         {
           firstName,
           lastName,
@@ -86,24 +87,26 @@ const Registration = () => {
 
       setUserFunction(responseData);
 
-      setFirstName('');
-      setLastName('');
-      setEmail('');
+      setFirstName("");
+      setLastName("");
+      setEmail("");
       setAge(0);
-      setUserName('');
-      setPassword('');
+      setUserName("");
+      setPassword("");
 
-      localStorage.setItem('user', JSON.stringify(responseData))
+      localStorage.setItem("user", JSON.stringify(responseData));
 
-      navigate('/feed')
+      navigate("/feed");
     } catch (e) {
       console.log("Error", e);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <>
-    <ScrollToTop />
+      <ScrollToTop />
       <div className="authPage">
         <div className="authDiv" id="regLeft">
           <div className="cover">
@@ -111,9 +114,11 @@ const Registration = () => {
             <h2>Along with endless inspiration</h2>
           </div>
         </div>
-        {loading && <div className="loading">
-          <h1>Loading...</h1>
-        </div>}
+        {loading && (
+          <div className="loading">
+            <h1>Loading...</h1>
+          </div>
+        )}
         {!loading && (
           <div className="authDiv" id="regRight">
             <form onSubmit={onSubmitHandler}>
@@ -183,13 +188,24 @@ const Registration = () => {
                   onChange={(e) => setPassword(e.target.value)}
                   value={password}
                 />
-                <span>Password must contain at least one uppercase letter, number and symbol</span>
+                <span>
+                  Password must contain at least one uppercase letter, number
+                  and symbol
+                </span>
                 {passwordMessage && (
                   <p className="input-alert">{passwordMessage}</p>
                 )}
               </div>
               {error && (
-                <p style={{ color: "red", fontSize: "11px", marginBottom: "5px" }}>{error}</p>
+                <p
+                  style={{
+                    color: "red",
+                    fontSize: "11px",
+                    marginBottom: "5px",
+                  }}
+                >
+                  {error}
+                </p>
               )}
               <div className="authButton">
                 <button onClick={onSubmitHandler}>Register</button>

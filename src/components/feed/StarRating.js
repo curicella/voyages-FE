@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./post.css"
+import "./post.css";
 
 const StarRating = ({ rating, onRatingChange }) => {
   const [hover, setHover] = useState(0);
@@ -14,7 +14,7 @@ const StarRating = ({ rating, onRatingChange }) => {
             key={idx}
             className={idx <= (rating || hover) ? "on" : "off"}
             onClick={() => {
-              onRatingChange(idx)
+              onRatingChange(idx);
             }}
             onMouseEnter={() => setHover(idx)}
             onMouseLeave={() => setHover(rating)}

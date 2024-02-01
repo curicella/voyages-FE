@@ -1,47 +1,48 @@
 import React, { useState, useEffect } from "react";
-import './post.css';
+import "./post.css";
 import StarRating from "./StarRating";
 import axios from "axios";
 import Heart from "react-animated-heart";
 
 const PostInFeed = ({ data }) => {
-  const [img, setImg] = useState('');
-  const [title, setTitle] = useState('');
-  const [desc, setDesc] = useState('');
-  const [overrated, setOverrated]= useState('');
-  const [underrated, setUnderrated]= useState('');
-  const [rating, setRating] = useState('');
-  const [likes, setLikes] = useState(14);
-  const [isClick, setClick] = useState(false);
-  const [currentUser, setCurrentUser] = useState(null)
+  const [currentUser, setCurrentUser] = useState(null);
   const [liked, setLiked] = useState(false);
+  const [likeCount, setLikeCount] = useState(data.likeCount);
 
   useEffect(() => {
-    let ls = JSON.parse(localStorage.getItem('user'));
+    let ls = JSON.parse(localStorage.getItem("user"));
     if (ls) setCurrentUser(ls.user);
-    console.log(data);
-  }, [localStorage.getItem('user')]);
+  }, [localStorage.getItem("user")]);
 
   useEffect(() => {
-    setLiked(data.likedDiaries?.some(l => l.userId === currentUser?.id));
+    setLiked(data.likedDiaries?.some((l) => l.userId === currentUser?.id));
   }, [data, currentUser]);
 
   const handleLike = async () => {
     try {
-      if (data.likedDiaries?.some(l => l.userId === currentUser?.id)) {
-        await axios.delete(`http://elacuric-001-site1.ctempurl.com/api/diarylikes/${data.likedDiaries.find(ld => ld.userId === currentUser.id)?.id}`);
-        data.likedDiaries.filter(ld => ld.id !== data.likedDiaries.find(ld => ld.userId === currentUser.id)?.id);
+      if (liked) {
+        await axios.delete(
+          `https://localhost:7030/api/DiaryLikes/${
+            data.likedDiaries.find((ld) => ld.userId === currentUser.id)?.id
+          }`
+        );
+        setLiked(false);
+        setLikeCount((prevCount) => prevCount - 1); // Decrease like count
       } else {
-        const response = await axios.post("http://elacuric-001-site1.ctempurl.com/api/diarylikes", {
-          userId: currentUser.id,
-          diaryId: data.id
-        })
-        data.likedDiaries.push(response.data);
+        const response = await axios.post(
+          "https://localhost:7030/api/DiaryLikes",
+          {
+            userId: currentUser.id,
+            diaryId: data.id,
+          }
+        );
+        setLiked(true);
+        setLikeCount((prevCount) => prevCount + 1); // Increase like count
       }
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   return (
     <div className="postFrame">
@@ -65,14 +66,12 @@ const PostInFeed = ({ data }) => {
             <span className="displayRating">{data.rating}/5</span>
           </div>
           <div className="like">
-          <Heart isClick={liked} onClick={() => handleLike()} 
-          />
-          <span>{data.likeCount}</span>
-                
+            <Heart isClick={liked} onClick={() => handleLike()} />
+            <span>{likeCount}</span> {/* Display like count */}
+          </div>
         </div>
       </div>
     </div>
-</div>
   );
 };
 

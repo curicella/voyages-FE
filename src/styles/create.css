@@ -1,118 +1,118 @@
 .create {
-    width: 100%;
-    margin: 100px 0 30px; /* Adjusted margin for smaller screens */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  margin: 100px 0 30px; /* Adjusted margin for smaller screens */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .cHeader {
-    display: flex;
-    justify-content: center;
-    padding: 0 20px 10px; /* Adjusted padding */
-    border-bottom: 1px solid #060a1a4d;
+  display: flex;
+  justify-content: center;
+  padding: 0 20px 10px; /* Adjusted padding */
+  border-bottom: 1px solid #060a1a4d;
 }
 
 .cHeader h2 {
-    font-size: 28px; /* Adjusted font size for smaller screens */
-    font-weight: 300;
-    padding: 10px 0; /* Adjusted padding */
+  font-size: 28px; /* Adjusted font size for smaller screens */
+  font-weight: 300;
+  padding: 10px 0; /* Adjusted padding */
 }
 
 .createDiary {
-    width: 80%;
+  width: 80%;
 }
 
 .diaryContent {
-    width: 100%; /* Adjusted width for responsiveness */
-    max-width: 600px; /* Added max-width for larger screens */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px; /* Adjusted padding */
-    position: relative;
+  width: 100%; /* Adjusted width for responsiveness */
+  max-width: 600px; /* Added max-width for larger screens */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px; /* Adjusted padding */
+  position: relative;
 }
 
 .diaryDesc input,
 .diaryDesc textarea {
-    margin-bottom: 10px;
-    padding: 10px;
-    background-color: #060a1a6a;
-    border: none;
-    font-size: 18px;
-    color: #cacaca;
-    outline: none;
-    text-align: left;
-    width: 100%; /* Adjusted width for responsiveness */
-    max-width: 400px; /* Added max-width for larger screens */
-    padding-left: 20px;
-    font-family: system-ui;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #060a1a6a;
+  border: none;
+  font-size: 18px;
+  color: #cacaca;
+  outline: none;
+  text-align: left;
+  width: 100%; /* Adjusted width for responsiveness */
+  max-width: 400px; /* Added max-width for larger screens */
+  padding-left: 20px;
+  font-family: system-ui;
 }
 ::placeholder {
-    font-size: 18px;
+  font-size: 18px;
 }
 
 .diaryDesc textarea {
-    height: 150px; /* Adjusted height for smaller screens */
-    resize: none;
+  height: 150px; /* Adjusted height for smaller screens */
+  resize: none;
 }
 
 .diaryFrame {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #060a1a2f;
-    border: #060a1a4b 1px solid;
-    margin: 20px 5%; /* Adjusted margin */
-    padding: 20px;
-    height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #060a1a2f;
+  border: #060a1a4b 1px solid;
+  margin: 20px 5%; /* Adjusted margin */
+  padding: 20px;
+  height: auto;
 }
 
 .rating {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%; /* Adjusted width for responsiveness */
-    max-width: 400px; /* Added max-width for larger screens */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Adjusted width for responsiveness */
+  max-width: 400px; /* Added max-width for larger screens */
 }
 
 .displayRating span {
-    position: absolute;
-    margin-top: 4em;
+  position: absolute;
+  margin-top: 4em;
 }
 
 .interaction {
-    display: flex;
-    flex-direction: row; /* Changed to column for smaller screens */
-    justify-content: center;
-    width: 100%;
-    margin-top: 1em;
-    height: auto;
+  display: flex;
+  flex-direction: row; /* Changed to column for smaller screens */
+  justify-content: center;
+  width: 100%;
+  margin-top: 1em;
+  height: auto;
 }
 
 .loading {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: baseline;
-    border-right: none;
-    font-weight: lighter;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: baseline;
+  border-right: none;
+  font-weight: lighter;
 }
 
 /* Media Queries for Responsive Design */
 
 @media screen and (min-width: 768px) {
-    .createDiary,
-    .diaryContent,
-    .rating,
-    .isPublic {
-        width: 60%; /* Adjusted width for larger screens */
-    }
+  .createDiary,
+  .diaryContent,
+  .rating,
+  .isPublic {
+    width: 60%; /* Adjusted width for larger screens */
+  }
 
-    .diaryFrame {
-        margin: 20px auto; /* Centered the diary frame */
-    }
+  .diaryFrame {
+    margin: 20px auto; /* Centered the diary frame */
+  }
 }
